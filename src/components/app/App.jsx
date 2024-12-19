@@ -1,4 +1,4 @@
-import ContactForm from "../ContactForm/ContactForm";
+import ContactForm from "../contactForm/ContactForm";
 import SearchBox from "../searchBox/SearchBox";
 import ContactList from "../contactList/ContactList";
 import { useState } from "react";
