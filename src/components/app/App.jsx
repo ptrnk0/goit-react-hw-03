@@ -32,6 +32,10 @@ const App = () => {
 		});
 	};
 
+	const handleSearchContact = (value) => {
+		setSearchValue(value);
+	};
+
 	const handleDeleteContact = (contactId) => {
 		setContacts((prev) => {
 			return prev.filter((contact) => contact.id !== contactId);
@@ -42,7 +46,7 @@ const App = () => {
 		<>
 			<h1>Phonebook</h1>
 			<ContactForm onAddContact={handleAddContact} />
-			<SearchBox value={searchValue} onSearch={setSearchValue} />
+			<SearchBox value={searchValue} onSearch={handleSearchContact} />
 			<ContactList
 				contacts={searchContacts}
 				onDeleteContact={handleDeleteContact}
