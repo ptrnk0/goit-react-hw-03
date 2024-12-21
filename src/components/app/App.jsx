@@ -1,28 +1,52 @@
 import ContactForm from "../contactForm/ContactForm";
 import SearchBox from "../searchBox/SearchBox";
 import ContactList from "../contactList/ContactList";
-import { useState } from "react";
-
-const contacts = [
-	{ id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
-	{ id: "id-2", name: "Hermione Kline", number: "443-89-12" },
-	{ id: "id-3", name: "Eden Clements", number: "645-17-79" },
-	{ id: "id-4", name: "Annie Copeland", number: "227-91-26" },
-];
+import { useEffect, useState } from "react";
+import initialContacts from "../../contacts.json";
+import { nanoid } from "nanoid";
 
 const App = () => {
 	const [searchValue, setSearchValue] = useState("");
+	const [contacts, setContacts] = useState(() => {
+		const lsContacts = window.localStorage.getItem("contacts");
+
+		if (lsContacts) {
+			return JSON.parse(lsContacts);
+		}
+
+		return initialContacts;
+	});
+
+	useEffect(() => {
+		window.localStorage.setItem("contacts", JSON.stringify(contacts));
+	}, [contacts]);
 
 	const searchContacts = contacts.filter((item) =>
 		item.name.toLowerCase().includes(searchValue.toLocaleLowerCase())
 	);
 
+	const handleAddContact = (contact) => {
+		contact.id = nanoid();
+		setContacts((prev) => {
+			return [...prev, contact];
+		});
+	};
+
+	const handleDeleteContact = (contactId) => {
+		setContacts((prev) => {
+			return prev.filter((contact) => contact.id !== contactId);
+		});
+	};
+
 	return (
 		<>
 			<h1>Phonebook</h1>
-			<ContactForm />
+			<ContactForm onAddContact={handleAddContact} />
 			<SearchBox value={searchValue} onSearch={setSearchValue} />
-			<ContactList contacts={searchContacts} />
+			<ContactList
+				contacts={searchContacts}
+				onDeleteContact={handleDeleteContact}
+			/>
 		</>
 	);
 };
