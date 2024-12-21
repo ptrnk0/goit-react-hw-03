@@ -4,6 +4,7 @@ import ContactList from "../contactList/ContactList";
 import { useEffect, useState } from "react";
 import initialContacts from "../../contacts.json";
 import { nanoid } from "nanoid";
+import css from "./App.module.css";
 
 const App = () => {
 	const [searchValue, setSearchValue] = useState("");
@@ -43,15 +44,15 @@ const App = () => {
 	};
 
 	return (
-		<>
-			<h1>Phonebook</h1>
+		<section className={css.container}>
+			<h1 className={css.title}>Phonebook</h1>
 			<ContactForm onAddContact={handleAddContact} />
 			<SearchBox value={searchValue} onSearch={handleSearchContact} />
 			<ContactList
 				contacts={searchContacts}
 				onDeleteContact={handleDeleteContact}
 			/>
-		</>
+		</section>
 	);
 };
 
