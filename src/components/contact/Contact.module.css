@@ -1,0 +1,16 @@
+.contactContainer {
+    border: 2px solid coral;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.contactText {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 5px;
+}
