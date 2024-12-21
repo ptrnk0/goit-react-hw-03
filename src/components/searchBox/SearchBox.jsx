@@ -2,16 +2,13 @@ import css from "./SearchBox.module.css";
 
 const SearchBox = ({ serachValue, onSearch }) => {
 	return (
-		<div>
-			<label>
-				Find contacts by name
-				<input
-					type="text"
-					value={serachValue}
-					onChange={(evt) => onSearch(evt.target.value)}
-				/>
-			</label>
-		</div>
+		<input
+			className={css.searchInput}
+			type="text"
+			value={serachValue}
+			onChange={(evt) => onSearch(evt.target.value)}
+			placeholder="Find contacts by name"
+		/>
 	);
 };
 
