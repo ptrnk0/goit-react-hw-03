@@ -13,7 +13,11 @@ const Contact = ({ contactName, number, id, onDeleteContact }) => {
 				<FaPhone />
 				<p>{number}</p>
 			</div>
-			<button type="button" onClick={() => onDeleteContact(id)}>
+			<button
+				type="button"
+				onClick={() => onDeleteContact(id)}
+				className={css.contactBtn}
+			>
 				Delete
 			</button>
 		</div>
